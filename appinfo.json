@@ -1,0 +1,17 @@
+{
+    "engine": "pdo",
+    "db_config": {
+        "host": "localhost",
+        "username": "papercup_crm",
+        "password": "Plks@2023",
+        "database": "papercup_crm"
+    },
+    "default_email": "jsaha.pl@gmail.com",
+    "default_email_pwd": "xxxxxxxxxxx",
+    "company_name": "Paperlink Softwares",
+    "company_default_logo": "pl_gold.png",
+    "api": false,
+    "api_url": "",
+    "app_name": "",
+    "api_key": ""
+}

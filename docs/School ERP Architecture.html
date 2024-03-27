@@ -1,0 +1,1627 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0067)http://117.247.69.92/acm/school_erp_project/school_erp_project.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <link rel="stylesheet" type="text/css" href="./School ERP Architecture_files/style1.css">
+        <link rel="stylesheet" type="text/css" href="./School ERP Architecture_files/style.css">
+        <script type="text/javascript" src="./School ERP Architecture_files/script.js.download"></script>
+        <script type="text/javascript" src="./School ERP Architecture_files/jquery.min.js.download"></script>
+
+        <script type="text/javascript" src="./School ERP Architecture_files/ddaccordion.js.download">
+
+        </script>
+
+
+        <script type="text/javascript">
+
+
+        ddaccordion.init({ //top level headers initialization
+        	headerclass: "expandable", //Shared CSS class name of headers group that are expandable
+        	contentclass: "categoryitems", //Shared CSS class name of contents group
+        	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+        	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+        	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false
+        	defaultexpanded: [0], //index of content(s) open by default [index1, index2, etc]. [] denotes no content
+        	onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+        	animatedefault: false, //Should contents open by default be animated into view?
+        	persiststate: true, //persist state of opened contents within browser session?
+        	toggleclass: ["", "openheader"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+        	togglehtml: ["prefix", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+        	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+        	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+        		//do nothing
+        	},
+        	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+        		//do nothing
+        	}
+        })
+
+        ddaccordion.init({ //2nd level headers initialization
+        	headerclass: "subexpandable", //Shared CSS class name of sub headers group that are expandable
+        	contentclass: "subcategoryitems", //Shared CSS class name of sub contents group
+        	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click" or "mouseover
+        	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+        	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false
+        	defaultexpanded: [], //index of content(s) open by default [index1, index2, etc]. [] denotes no content
+        	onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+        	animatedefault: false, //Should contents open by default be animated into view?
+        	persiststate: true, //persist state of opened contents within browser session?
+        	toggleclass: ["opensubheader", "closedsubheader"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+        	togglehtml: ["none", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+        	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+        	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+        		//do nothing
+        	},
+        	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+        		//do nothing
+        	}
+        })
+
+
+        </script><style type="text/css">
+.categoryitems{display: none}
+a.hiddenajaxlink{display: none}
+</style><style type="text/css">
+.subcategoryitems{display: none}
+a.hiddenajaxlink{display: none}
+</style>
+
+        <style type="text/css">
+
+        .arrowlistmenu{
+        width: 190px; /*width of accordion menu*/
+        }
+
+        .arrowlistmenu .menuheader{ /*CSS class for menu headers in general (expanding or not!)*/
+        font: bold 14px Arial;
+        color: white;
+        background: black url(../titlebar.png) repeat-x center left;
+        margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+        text-transform: uppercase;
+        padding: 4px 0 4px 10px; /*header text is indented 10px*/
+        cursor: hand;
+        cursor: pointer;
+        }
+
+        .arrowlistmenu .openheader{ /*CSS class to apply to expandable header when it's expanded*/
+        background-image: url(../titlebar-active.png);
+        }
+
+        .arrowlistmenu ul{ /*CSS for UL of each sub menu*/
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
+        }
+
+        .arrowlistmenu ul li{
+        padding-bottom: 5px; /*bottom spacing between menu items*/
+        }
+
+        .arrowlistmenu ul li .opensubheader{ /*Open state CSS for sub menu header*/
+        background: lightblue !important;
+        }
+
+        .arrowlistmenu ul li .closedsubheader{ /*Closed state CSS for sub menu header*/
+        background: lightgreen !important;
+        }
+
+        .arrowlistmenu ul li a{
+        color: #FFFFFF;
+        background: url(../arrowbullet.png) no-repeat center left; /*custom bullet list image*/
+        display: block;
+        padding: 5px 0;
+        padding-left: 19px; /*link text is indented 19px*/
+        text-decoration: none;
+        font-weight: bold;
+        border-bottom: 1px solid #dadada;
+        font-size: 90%;
+        }
+
+       /* .arrowlistmenu ul li a:visited{
+        color: #CCFF00;
+        }*/
+
+        .arrowlistmenu ul li a:hover{ /*hover state CSS*/
+        background-color: #005784;
+        }
+
+
+        </style>
+
+    <title>Welcome to Sunsky Software</title><style type="text/css">.dg {
+  /** Clear list styles */
+  /* Auto-place container */
+  /* Auto-placed GUI's */
+  /* Line items that don't contain folders. */
+  /** Folder names */
+  /** Hides closed items */
+  /** Controller row */
+  /** Name-half (left) */
+  /** Controller-half (right) */
+  /** Controller placement */
+  /** Shorter number boxes when slider is present. */
+  /** Ensure the entire boolean and function row shows a hand */ }
+  .dg ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    clear: both; }
+  .dg.ac {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    z-index: 0; }
+  .dg:not(.ac) .main {
+    /** Exclude mains in ac so that we don't hide close button */
+    overflow: hidden; }
+  .dg.main {
+    -webkit-transition: opacity 0.1s linear;
+    -o-transition: opacity 0.1s linear;
+    -moz-transition: opacity 0.1s linear;
+    transition: opacity 0.1s linear; }
+    .dg.main.taller-than-window {
+      overflow-y: auto; }
+      .dg.main.taller-than-window .close-button {
+        opacity: 1;
+        
+        margin-top: -1px;
+        border-top: 1px solid #2c2c2c; }
+    .dg.main ul.closed .close-button {
+      opacity: 1 !important; }
+    .dg.main:hover .close-button,
+    .dg.main .close-button.drag {
+      opacity: 1; }
+    .dg.main .close-button {
+      /*opacity: 0;*/
+      -webkit-transition: opacity 0.1s linear;
+      -o-transition: opacity 0.1s linear;
+      -moz-transition: opacity 0.1s linear;
+      transition: opacity 0.1s linear;
+      border: 0;
+      position: absolute;
+      line-height: 19px;
+      height: 20px;
+      
+      cursor: pointer;
+      text-align: center;
+      background-color: #000; }
+      .dg.main .close-button:hover {
+        background-color: #111; }
+  .dg.a {
+    float: right;
+    margin-right: 15px;
+    overflow-x: hidden; }
+    .dg.a.has-save > ul {
+      margin-top: 27px; }
+      .dg.a.has-save > ul.closed {
+        margin-top: 0; }
+    .dg.a .save-row {
+      position: fixed;
+      top: 0;
+      z-index: 1002; }
+  .dg li {
+    -webkit-transition: height 0.1s ease-out;
+    -o-transition: height 0.1s ease-out;
+    -moz-transition: height 0.1s ease-out;
+    transition: height 0.1s ease-out; }
+  .dg li:not(.folder) {
+    cursor: auto;
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden;
+    padding: 0 4px 0 5px; }
+  .dg li.folder {
+    padding: 0;
+    border-left: 4px solid rgba(0, 0, 0, 0); }
+  .dg li.title {
+    cursor: pointer;
+    margin-left: -4px; }
+  .dg .closed li:not(.title),
+  .dg .closed ul li,
+  .dg .closed ul li > * {
+    height: 0;
+    overflow: hidden;
+    border: 0; }
+  .dg .cr {
+    clear: both;
+    padding-left: 3px;
+    height: 27px; }
+  .dg .property-name {
+    cursor: default;
+    float: left;
+    clear: left;
+    width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .dg .c {
+    float: left;
+    width: 60%; }
+  .dg .c input[type=text] {
+    border: 0;
+    margin-top: 4px;
+    padding: 3px;
+    width: 100%;
+    float: right; }
+  .dg .has-slider input[type=text] {
+    width: 30%;
+    /*display: none;*/
+    margin-left: 0; }
+  .dg .slider {
+    float: left;
+    width: 66%;
+    margin-left: -5px;
+    margin-right: 0;
+    height: 19px;
+    margin-top: 4px; }
+  .dg .slider-fg {
+    height: 100%; }
+  .dg .c input[type=checkbox] {
+    margin-top: 9px; }
+  .dg .c select {
+    margin-top: 5px; }
+  .dg .cr.function,
+  .dg .cr.function .property-name,
+  .dg .cr.function *,
+  .dg .cr.boolean,
+  .dg .cr.boolean * {
+    cursor: pointer; }
+  .dg .selector {
+    display: none;
+    position: absolute;
+    margin-left: -9px;
+    margin-top: 23px;
+    z-index: 10; }
+  .dg .c:hover .selector,
+  .dg .selector.drag {
+    display: block; }
+  .dg li.save-row {
+    padding: 0; }
+    .dg li.save-row .button {
+      display: inline-block;
+      padding: 0px 6px; }
+  .dg.dialogue {
+    background-color: #222;
+    width: 460px;
+    padding: 15px;
+    font-size: 13px;
+    line-height: 15px; }
+
+
+#dg-new-constructor {
+  padding: 10px;
+  color: #222;
+  font-family: Monaco, monospace;
+  font-size: 10px;
+  border: 0;
+  resize: none;
+  box-shadow: inset 1px 1px 1px #888;
+  word-wrap: break-word;
+  margin: 12px 0;
+  display: block;
+  width: 440px;
+  overflow-y: scroll;
+  height: 100px;
+  position: relative; }
+
+#dg-local-explain {
+  display: none;
+  font-size: 11px;
+  line-height: 17px;
+  border-radius: 3px;
+  background-color: #333;
+  padding: 8px;
+  margin-top: 10px; }
+  #dg-local-explain code {
+    font-size: 10px; }
+
+#dat-gui-save-locally {
+  display: none; }
+
+/** Main type */
+.dg {
+  color: #eee;
+  font: 11px 'Lucida Grande', sans-serif;
+  text-shadow: 0 -1px 0 #111;
+  /** Auto place */
+  /* Controller row, <li> */
+  /** Controllers */ }
+  .dg.main {
+    /** Scrollbar */ }
+    .dg.main::-webkit-scrollbar {
+      width: 5px;
+      background: #1a1a1a; }
+    .dg.main::-webkit-scrollbar-corner {
+      height: 0;
+      display: none; }
+    .dg.main::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: #676767; }
+  .dg li:not(.folder) {
+    background: #1a1a1a;
+    border-bottom: 1px solid #2c2c2c; }
+  .dg li.save-row {
+    line-height: 25px;
+    background: #dad5cb;
+    border: 0; }
+    .dg li.save-row select {
+      margin-left: 5px;
+      width: 108px; }
+    .dg li.save-row .button {
+      margin-left: 5px;
+      margin-top: 1px;
+      border-radius: 2px;
+      font-size: 9px;
+      line-height: 7px;
+      padding: 4px 4px 5px 4px;
+      background: #c5bdad;
+      color: #fff;
+      text-shadow: 0 1px 0 #b0a58f;
+      box-shadow: 0 -1px 0 #b0a58f;
+      cursor: pointer; }
+      .dg li.save-row .button.gears {
+        background: #c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;
+        height: 7px;
+        width: 8px; }
+      .dg li.save-row .button:hover {
+        background-color: #bab19e;
+        box-shadow: 0 -1px 0 #b0a58f; }
+  .dg li.folder {
+    border-bottom: 0; }
+  .dg li.title {
+    padding-left: 16px;
+    background: black url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+  .dg .closed li.title {
+    background-image: url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==); }
+  .dg .cr.boolean {
+    border-left: 3px solid #806787; }
+  .dg .cr.function {
+    border-left: 3px solid #e61d5f; }
+  .dg .cr.number {
+    border-left: 3px solid #2fa1d6; }
+    .dg .cr.number input[type=text] {
+      color: #2fa1d6; }
+  .dg .cr.string {
+    border-left: 3px solid #1ed36f; }
+    .dg .cr.string input[type=text] {
+      color: #1ed36f; }
+  .dg .cr.function:hover, .dg .cr.boolean:hover {
+    background: #111; }
+  .dg .c input[type=text] {
+    background: #303030;
+    outline: none; }
+    .dg .c input[type=text]:hover {
+      background: #3c3c3c; }
+    .dg .c input[type=text]:focus {
+      background: #494949;
+      color: #fff; }
+  .dg .c .slider {
+    background: #303030;
+    cursor: ew-resize; }
+  .dg .c .slider-fg {
+    background: #2fa1d6; }
+  .dg .c .slider:hover {
+    background: #3c3c3c; }
+    .dg .c .slider:hover .slider-fg {
+      background: #44abda; }
+</style><link rel="stylesheet" type="text/css" href="chrome-extension://dgmanlpmmkibanfdgjocnabmcaclkmod/page.css" class="page-styles"></head>
+    
+        <body class="backimage" data-new-gr-c-s-check-loaded="14.1058.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1058.0">
+          <table align="center" cellspacing="0" cellpadding="0" width="1060" style="background: url(../image/shadow01.jpg) repeat-y">
+            <tbody><tr><td>
+            <form style="width" name="form1" method="post" action="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">
+            <table align="center" class="main-table" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td width="1000" colspan="3" height="150" bgcolor="#000000">
+                        <embed src="../swf/hd.swf" width="100%" height="100%">
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td height="35" colspan="3" style="background: url(image/mainbar.jpg) repeat-x;">
+                        <ul class="menu" id="menu">
+                        	<li><a href="http://117.247.69.92/acm/index.php" class="menulink">HOME</a></li>
+                        	<li><a href="http://117.247.69.92/acm/About/about.html" class="menulink">About</a>
+                                <ul class="c1">
+			                        <li class="topline"><a href="http://117.247.69.92/acm/Company_profile/Company_profile.html">Company Profile</a></li>
+			                        <li><a href="http://117.247.69.92/acm/Quality_of_service(Qos)/Quality_of_service(Qos).html">Quality of Services (QoS)</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Legality/Legality.html">Legality</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Photo_and_video_galleries/Photo_and_video_galleries.html">Photo and Video Galleries</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Award_and_achievments/Award_and_achievments.html">Award and Achievments</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Support/Support.html">Support</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Clients/Clients.html">Clients</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Trademarks_and_copyrights/Trademarks_and_copyrights.html">Trademarks and Copyrights</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Seminers_and_trade_shows/Seminers_and_trade_shows.html">Seminers and Trade Shows</a></li>
+		                        </ul>
+                            </li>
+                        	<li>
+                        		<a href="http://117.247.69.92/acm/index.html" class="menulink">ACM</a>
+                        		<ul class="c1">
+                                    <li><a href="http://117.247.69.92/acm/bundlepackmain/bundlepackmain.html" class="sub">ACM Bundle Pack</a>
+                                        <ul>
+                                            <li class="topline"><a href="http://117.247.69.92/acm/moviebox/moviebox.html">ACM Movie Box Series</a></li>
+                        					<li><a href="http://117.247.69.92/acm/livebox/livebox.html">ACM Live Box Series</a></li>
+                        					<li><a href="http://117.247.69.92/acm/newsbox/newsbox.html">ACM News Box Series</a></li>
+                                            <li><a href="http://117.247.69.92/acm/cricketbox/cricketbox.html">ACM Cricket Box Series</a></li>
+                                            <li><a href="http://117.247.69.92/acm/goldbox/goldbox.html">ACM Gold Box Series</a></li>
+                        				</ul>
+                                    </li>
+                        			<li><a href="http://117.247.69.92/acm/satpackmain/satpackmain.html" class="sub">ACM Satellite Pro</a>
+                                        <ul>
+                                            <li class="topline"><a href="http://117.247.69.92/acm/satpromovie_edition/movie_edition.html">ACM Sat Pro Movie Edition</a></li>
+                        					<li><a href="http://117.247.69.92/acm/satprolive_edition/live_edition.html">ACM Sat Pro Live Edition</a></li>
+                        					<li><a href="http://117.247.69.92/acm/satprovod_edition/vod_edition.html">ACM Sat Pro VOD Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satprosfunda_edition/smsfunda_edition.html">ACM Sat Pro SMS Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satproclassified_edition/classified_edition.html">ACM Sat Pro Classified Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satprogold_edition/gold_edition.html">ACM Sat Pro GOLD Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satpronews_edition/news_edition.html">ACM Sat Pro News Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satprocricket_edition/cricket_edition.html">ACM Sat Pro Cricket Edition</a></li>
+                        				</ul>
+                                    </li>
+                        			<li><a href="http://117.247.69.92/acm/pluspackmain/pluspackmain.html" class="sub">ACM Plus Pack</a>
+                                        <ul>
+                                            <li class="topline"><a href="http://117.247.69.92/acm/Movieplus/movieplus.html">ACM Movie Plus</a></li>
+                        					<li><a href="http://117.247.69.92/acm/Liveplus/liveplus.html">ACM Live Plus</a></li>
+                        					<li><a href="http://117.247.69.92/acm/Vodplus/vodplus.html">ACM VOD Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/SMSFundaplus/smsfundaplus.html">ACM SMS Funda Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Classifiedplus/classifiedplus.html">ACM Classified Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Goldplus/goldplus.html">ACM Gold Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Goldpremium/goldpremium.html">ACM Gold Premium</a></li>
+                        				</ul>
+                                    </li>
+                                    <li><a href="http://117.247.69.92/acm/normalpackmain/normalpackmain.html" class="sub">ACM Normal Pack</a>
+                                        <ul>
+                        					<li class="topline"><a href="http://117.247.69.92/acm/Movienormal/movienormal.html">ACM Movie Normal</a></li>
+                        					<li><a href="http://117.247.69.92/acm/Livenormal/livenormal.html">ACM Live Normal</a></li>
+                        					<li><a href="http://117.247.69.92/acm/Vodnormal/vodnormal.html">ACM VOD Normal</a></li>
+                                            <li><a href="http://117.247.69.92/acm/SMSfundanormal/smsfundanormal.html">ACM SMS Funda Normal</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Classifiednormal/classifiednormal.html">ACM Classified Normal</a></li>
+                        				</ul>
+                                    </li>
+                                    <li><a href="http://117.247.69.92/acm/basicpackmain/basicpackmain.html" class="sub">ACM Basic Pack</a>
+                                        <ul>
+                        					<li class="topline"><a href="http://117.247.69.92/acm/Moviebasic/moviebasic.html">ACM Movie Basic</a></li>
+                        					<li><a href="http://117.247.69.92/acm/Livebasic/livebasic.html">ACM Live Basic</a></li>
+                        					<li><a href="http://117.247.69.92/acm/Vodbasic/vodbasic.html">ACM VOD Basic</a></li>
+                                            <li><a href="http://117.247.69.92/acm/SMSfundabasic/smsfundabasic.html">ACM SMS Funda Basic</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Classifiedbasic/classifiedbasic.html">ACM Classified Basic</a></li>
+                        				</ul>
+                                    </li>
+                                    <li><a href="http://117.247.69.92/acm/campackmain/campackmain.html" class="sub">Cable Account Manager</a>
+                                        <ul>
+                        					<li class="topline"><a href="http://117.247.69.92/acm/camnetwork/camnetwork.html">CAM Network Edition</a></li>
+                        					<li><a href="http://117.247.69.92/acm/cammso/cammso.html">CAM MSO Edition</a></li>
+                        					<li><a href="http://117.247.69.92/acm/camgold/camgold.html">CAM GOLD Edition</a></li>
+                        				</ul>
+                                    </li>
+                        		</ul>
+                        	</li>
+                        	<li>
+                        		<a href="http://117.247.69.92/acm/Products/products.html" class="menulink">Products</a>
+                        		<ul style="width: 200px" class="c1">
+                                    <li><a href="http://117.247.69.92/acm/Play_out_automation_system/Play_out_automation_system.html" class="sub">Play Out Automation System</a>
+                                        <ul>
+                                            <li class="topline"><a href="http://117.247.69.92/acm/Movie_box_play_out_system/Movie_box_play_out_system.html">Movie Box Play Out System</a></li>
+                        					<li><a href="http://117.247.69.92/acm/Live_box_play_out_system/Live_box_play_out_system.html">Live Box Play Out System</a></li>
+                        					<li><a href="http://117.247.69.92/acm/News_box_play_out_system/News_box_play_out_system.html">News Box Play Out System</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Gold_box_play_out_system/Gold_box_play_out_system.html">Gold Box Play Out System</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Cricket_box_play_out_system/Cricket_box_play_out_system.html">Cricket Box Play Out System</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Play_out_automation_software/Play_out_automation_software.html" class="sub">Play Out Automation Software</a>
+                                                <ul>
+                                                    <li><a href="http://117.247.69.92/acm/Satellite_channel_play_out_software/Satellite_channel_play_out_software.html">Satellite Channel Box Play Out Software</a></li>
+                                                    <li><a href="http://117.247.69.92/acm/Digital_HD_channel_play_out_software/Digital_HD_channel_play_out_software.html">Digital HD Channel Box Play Out Software</a></li>
+                                					<li><a href="http://117.247.69.92/acm/Ground_TV_channel_play_out_software/Ground_TV_channel_play_out_software.html">Grround TV Channel Box Play Out Software</a></li>
+                                					<li><a href="http://117.247.69.92/acm/Local_cable_TV_channel_play_out_software/Local_cable_TV_channel_play_out_software.html">Local Cable TV Channel Box Play Out Software</a></li>
+                                                </ul>
+                                            </li>
+                        				</ul>
+                                    </li>
+                                    <li><a href="http://117.247.69.92/acm/Logistics_software/Logistics_software.html">Logistics Software</a></li>
+                                    <li><a href="http://117.247.69.92/acm/MLM_and_money_marketing_software/MLM_and_money_marketing_software.html">MLM and Money Marketing Software</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Cable_and_internet_MGMT_software/Cable_and_internet_MGMT_software.html">Cable and Internet MGMT Software</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Security_and_surveyllance_software/Security_and_surveyllance_software.html">Security and Surveyllance Software</a></li>
+                        		</ul>
+                        	</li>
+                            <li><a href="http://117.247.69.92/acm/school_erp_project/Services.html" class="menulink">Services</a>
+                                <ul class="c1">
+                                    <li class="topline"><a href="http://117.247.69.92/acm/Software_Development/Software_Development.html">Software Development</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Multimedia_Development/Multimedia_Development.html">Multimedia Development</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Web_Development/Web_Development.html">Web Development</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Domain_and_hosting_services/Domain_and_hosting_services.html">Domain and Hosting Services</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Cloud_video_server/Cloud_video_server.html">Cloud Video Server</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Cloud_application_server/Cloud_application_server.html">Cloud Application Server</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="http://117.247.69.92/acm/Solutions/Solutions.html" class="menulink">Solutions</a>
+                                <ul class="c1">
+                                    <li class="topline"><a href="http://117.247.69.92/acm/Digital_broadcasting_solutions/Digital_broadcasting_solutions.html">Digital Broadcasting Solutions</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Warehouse_MGMT_solutions/Warehouse_MGMT_solutions.html">Warhouse MGMT Solutions</a></li>
+                                    <li><a href="http://117.247.69.92/acm/MLM_and_cheat_fund_solutions/MLM_and_cheat_fund_solutions.html">MLM and Cheat Fund Solutions</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Security_and_surveyllance_solutions/Security_and_surveyllance_solutions.html">Security and Surveyllance Solutions</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Graphics_design_solutions/Graphics_design_solutions.html">Graphics Design Solutions</a></li>
+                                    <li><a href="http://117.247.69.92/acm/school_erp_project/Ground_TV_channel_solutions.html">Ground TV Channel Solutions</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="http://117.247.69.92/acm/Support/Support.html" class="menulink">Support</a>
+                                <ul class="c1">
+			                        <li class="topline"><a href="http://117.247.69.92/acm/Support_information/Support_information.html">Support Information</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Activation_guide/Activation_guide.html">Activation Guide</a></li>
+			                        <li><a href="http://117.247.69.92/acm/Complaint_booking/Complaint_booking.html">Complaint Booking</a></li>
+                                    <li><a href="http://117.247.69.92/acm/License_renewal/License_renewal.html">License Renewal</a></li>
+                                    <li><a href="http://117.247.69.92/acm/FAQ/FAQ.html">FAQ</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Terms_and_conditions/Terms_and_conditions.html">Terms and Conditions</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Software_update/Software_update.html">Software Update</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Software_conversion/Software_conversion.html">Software Conversion</a></li>
+                                    <li><a href="http://117.247.69.92/acm/Tableofcharges/Tableofcharges.html">Table of Charges</a></li>
+		                        </ul>
+                            </li>
+                            <li><a href="http://117.247.69.92/acm/Contact_us/Contact_us.html" class="menulink">Contact Us</a></li>
+                        </ul>
+                        <script type="text/javascript">
+                        	var menu=new menu.dd("menu");
+                        	menu.init("menu","menuhover");
+                        </script>
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td style="background: url(image/sbmbar1.jpg) repeat-x; font: Verdana; font-size: 12px; color: #FFFFFF;" width="200">&nbsp;&nbsp;Welcome to Sunsky software</td>
+                    <td id="alllink" style="background: url(image/sbmbar1.jpg) repeat-x; font: Verdana; font-size: 12px; color: #FFFFFF;" width="600">&nbsp;<a href="http://117.247.69.92/acm/index.html">Home</a>&gt;<a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html">School ERP&nbsp;System</a></td>
+                    <td style="background: url(image/sbmbar1.jpg) repeat-x; font: Verdana; font-size: 10px; padding-bottom: 5px; color: #FFFFFF">Search&nbsp;
+                        <input style="width: 100px" name="search" type="text" value="">
+                        <input name="button" type="submit" value="Go" onclick="getResult();">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="background: url(image/ltbar1.jpg) repeat-y;">
+                        <table cellpadding="0" cellspacing="0">
+                            <tbody><tr>
+                                <td width="200" valign="top">
+                                    <table align="right" width="200" cellpadding="0" cellspacing="0" class="arrowlistmenu">
+                                        <tbody><tr>
+                                            <td class="text2" align="center" width="100%" height="30" style="background: url(../titlebar.png) repeat-x;">
+                                                <a href="http://www.sunskysoftware.com/auth/login.php">Login</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="menuheader expandable" headerindex="0h"><span class="accordprefix"></span>Bundle Pack series<span class="accordsuffix"></span></td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <ul style="padding-left: 5px; display: none;" class="categoryitems" contentindex="0c">
+                                            <li><a href="http://117.247.69.92/acm/moviebox/moviebox.html">Movie Box Series</a></li>
+                                            <li><a href="http://117.247.69.92/acm/livebox/livebox.html">Live Box Series</a></li>
+                                            <li><a href="http://117.247.69.92/acm/newsbox/newsbox.html">News Box Series</a></li>
+                                            <li><a href="http://117.247.69.92/acm/cricketbox/cricketbox.html">Cricket Box Series</a></li>
+                                            <li><a href="http://117.247.69.92/acm/goldbox/goldbox.html">Gold Box Series</a></li>
+                                            </ul>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="menuheader expandable" headerindex="1h"><span class="accordprefix"></span>ACM Setellite Pro<span class="accordsuffix"></span></td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <ul style="padding-left: 5px; display: none;" class="categoryitems" contentindex="1c">
+                                            <li><a href="http://117.247.69.92/acm/satpromovie_edition/movie_edition.html">Movie Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satprolive_edition/live_edition.htm">Live Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satprovod_edition/vod_edition.html">VOD Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satprosfunda_edition/smsfunda_edition.html">SMS Funda Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satproclassified_edition/classified_edition.html">Classified Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satprogold_edition/gold_edition.html">Gold Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satpronews_edition/news_edition.html">News Edition</a></li>
+                                            <li><a href="http://117.247.69.92/acm/satprocricket_edition/cricket_edition.html">Cricket Edition</a></li>
+                                            </ul>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="menuheader expandable" headerindex="2h"><span class="accordprefix"></span>ACM Plus Pack<span class="accordsuffix"></span></td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <ul style="padding-left: 5px; display: none;" class="categoryitems" contentindex="2c">
+                                            <li><a href="http://117.247.69.92/acm/Movieplus/movieplus.html">Movie Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Liveplus/liveplus.html">Live Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Vodplus/vodplus.html">VOD Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/SMSFundaplus/smsfundaplus.html">SMS Funda Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Classifiedplus/classifiedplus.html">Classified Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Goldplus/goldplus.html">GOLD Plus</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Goldpremium/goldpremium.html">Gold Pre</a></li>
+                                            </ul>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="menuheader expandable" headerindex="3h"><span class="accordprefix"></span>ACM Normal Pack<span class="accordsuffix"></span></td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <ul style="padding-left: 5px; display: none;" class="categoryitems" contentindex="3c">
+                                            <li><a href="http://117.247.69.92/acm/Movienormal/movienormal.html">Movie Normal</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Livenormal/livenormal.html">Live Normal</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Vodnormal/vodnormal.html">VOD Normal</a></li>
+                                            <li><a href="http://117.247.69.92/acm/SMSfundanormal/smsfundanormal.html">SMS Funda Normal</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Classifiednormal/classifiednormal.html">Classified Normal</a></li>
+                                            </ul>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="menuheader expandable" headerindex="4h"><span class="accordprefix"></span>ACM Basic Pack<span class="accordsuffix"></span></td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <ul style="padding-left: 5px; display: none;" class="categoryitems" contentindex="4c">
+                                            <li><a href="http://117.247.69.92/acm/Moviebasic/moviebasic.html">Movie Basic</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Livebasic/livebasic.html">Live Basic</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Vodbasic/vodbasic.html">VOD Basic</a></li>
+                                            <li><a href="http://117.247.69.92/acm/SMSfundabasic/smsfundabasic.html">SMS Funda Basic</a></li>
+                                            <li><a href="http://117.247.69.92/acm/Classifiedbasic/classifiedbasic.html">Classified Basic</a></li>
+                                            </ul>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="menuheader expandable" headerindex="5h"><span class="accordprefix"></span>Cable Accounting<span class="accordsuffix"></span></td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <ul style="padding-left: 5px; display: none;" class="categoryitems" contentindex="5c">
+                                            <li><a href="http://117.247.69.92/acm/camnetwork/camnetwork.html">CAM Network</a></li>
+                                            <li><a href="http://117.247.69.92/acm/cammso/cammso.html">CAM MSO</a></li>
+                                            <li><a href="http://117.247.69.92/acm/camgold/camgold.html">CAM Gold</a></li>
+                                            </ul>
+                                          </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                                <td width="600" valign="top" style="background: url(../image/middlebackimage.jpg) repeat-y;">
+                                    <table align="center" cellpadding="0" cellspacing="0">
+                                        <tbody><tr>
+                                            <td colspan="3" width="600" height="320" bgcolor="#000000">
+                                                <table align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td width="580" height="300" bgcolor="#CCFF00">
+                                                            <img src="./School ERP Architecture_files/school_erp_systemimage.jpg" width="580" height="100%">
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">Introduction</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; text-align: justify; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td height="4"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                        <p>&nbsp;&nbsp;Today’s schools cite a myriad of purposes for technology in schools, including improved teaching,
+                                                         leadership, and decision making, as well as the following student-focused purposes:</p>
+                                                        <p style=" height: 10px"></p>
+                                                        <ul>
+                                                            <li>Improving learning (e.g., higher standardized test scores).</li>
+                                                            <li>Increasing student engagement in learning.</li>
+                                                            <li>Improving the economic viability of students(e.g., increasing students’ abilities to succeed in a 21st
+                                                             century work environment through teaming, technology fluency, and high productivity).</li><p></p><p>
+                                                            </p><li>Increasing relevance and real-world application of academics.</li>
+                                                            <li>Closing the digital divide by increasing technology literacy in all students.</li>
+                                                            <li>Building 21st Century skills (e.g., critical thinking and sound reasoning, global awareness, communication skills, information and visual literacy, scientific reasoning, productivity, and creativity).</li>
+                                                        </ul>
+                                                        <p style=" height: 30px"></p>
+                                                        <p>&nbsp;&nbsp;Researchers find that extracting the full learning return from a technology investment requires
+                                                        much more than the mere introduction of technology with software and web resources aligned with
+                                                         the curriculum. It requires the triangulation of content, sound principles of learning, and high-quality
+                                                          teaching—all of which must be aligned with assessment and accountability.</p>
+                                                         <p style=" height: 10px"></p>
+                                                         <p>&nbsp;&nbsp;Technology plays three important roles in transforming schools into systems that employ these principles.
+                                                          First and foremost, it is a learning tool for more student-centric, relevant, rigorous learning. Second,
+                                                           it serves as a data tool for education to better understand and inform educational and instructional decision
+                                                            making. Third, it is an enabling force behind globalization, knowledge work, and entrepreneurship, and
+                                                             thus students must understand the role it plays in transforming political, social, cultural, civic, and
+                                                              economic systems around the world. The combination of the three presents much of the rationale for technology
+                                                               in schools today. According to Stanford Professor Larry Cuban, schools have not been able to produce such
+                                                                results through technology on a large scale.</p>
+                                                          <p style=" height: 10px"></p>
+                                                          <p>&nbsp;&nbsp;Virtual learning today is a breakeven proposition (i.e., gets the same results as face-to-face learning),
+                                                             while at the same time providing flexibility to its users. The virtual learning tools such as Television
+                                                              and Video, Calculators, Engagement Devices (such as Interactive whiteboards, Quick-response devices),
+                                                               Portable ICT Devices (such as PDAs, tablet PCs, palmtop computers, and data-logging devices), other
+                                                                utilities (such as web-sites, videoconference) are already a widely used instructional resource in
+                                                                 the most modern schools.</p>
+                                                          <p style=" height: 10px"></p>
+                                                          <p>&nbsp;&nbsp;Overall, across all uses in all content areas, technology does provide a small, but significant, increase
+                                                           in learning when implemented with fidelity. Most educators are looking for the value proposition that will
+                                                            significantly advance learning, teaching, and school system efficiencies.</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20"></td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">Overview</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; text-align: justify; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td colspan="2" height="4"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                        <p style="height: 5px"></p>
+                                                        <p style="text-decoration: underline; font-weight: bold">About School ERP System :-</p>
+                                                        <p style="height: 5px"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                          <p style=" height: 5px"></p>
+                                                          <p>&nbsp;&nbsp;School ERP System is an enterprise multi-channel online portal that allows various
+                                                           Operations and Management to manipulate and store important information to meet compliance
+                                                            and archival needs. It helps in ensuring that various workflows are well executed and
+                                                             quality of teaching and operations are up to the desired mark. It helps everyone at
+                                                              various levels of workflow. It provides seamless integration among information systems of various departments.
+                                                          </p>
+                                                          <p style=" height: 10px"></p>
+                                                          <p>&nbsp;&nbsp;School ERP System provides ease of use to users by same User Interface which is very user friendly
+                                                           and provides handy access to all the necessary options. It is intelligent by the way of avoiding redo
+                                                            of activities and maintaining integrity of data across the enterprise.
+                                                          </p>
+                                                          <p style=" height: 10px"></p>
+                                                          <p>&nbsp;&nbsp;School ERP System can quickly be integrated to your existing Enterprise Software Components or
+                                                           the new components to which you upgrade in future.
+                                                          </p>
+                                                          <p style=" height: 10px"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                        <p style="height: 5px"></p>
+                                                        <p style="text-decoration: underline; font-weight: bold">Company and Product Advantages :-</p>
+                                                        <p style="height: 5px"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr valign="top" bgcolor="#363636">
+                                                        <td style="padding-left: 5px; padding-top: 5px;" align="justify" width="70%" height="120">
+                                                            <p><b>Focus on Emerging Technologies :</b>&nbsp;
+                                                            As Enterprise Application is the core company business, Sunsky Software focuses to constantly research,
+                                                             develop and introduce broad range of functions, security, technology and modern Network &amp; Multimedia
+                                                              experience. So the development roadmap in business features and technology can ensure continuous
+                                                               evolution and longest lifecycle.
+                                                            </p>
+                                                            <p style="height: 20px"></p>
+                                                        </td>
+                                                        <td style="padding-top: 5px;" align="center" width="30%"><img width="150" src="./School ERP Architecture_files/focuson_emerging_technologies.png"></td>
+                                                    </tr>
+                                                    <tr valign="top" bgcolor="#363636">
+                                                        <td style="padding-left: 5px; padding-top: 5px;" align="justify" width="70%" height="120">
+                                                            <p><b>Integration Experience :</b>&nbsp;
+                                                            Software solutions are always developed in keeping integration in mind. Our solutions can
+                                                             easily be integrated or are given APIs for clients to reuse our products and take advantage of reusability.
+                                                            </p>
+                                                            <p style="height: 20px"></p>
+                                                        </td>
+                                                        <td style="padding-top: 5px;" align="center" width="30%"><img width="150" src="./School ERP Architecture_files/Integration_Experienceimage.png"></td>
+                                                    </tr>
+                                                    <tr valign="top" bgcolor="#363636">
+                                                        <td style="padding-left: 5px; padding-top: 5px;" align="justify" width="70%" height="120">
+                                                            <p><b>Custom Strategy Approach and Custom Development :</b>&nbsp;
+                                                            Our project development strategy includes full synchronization to client’s business priorities and specifics.
+                                                             Broad financial and e-services know-how and dedicated software development team allow flexible and effective
+                                                              implementation of specific functional and system requirements thus removing limitations typical of fixed-functionality
+                                                               products and solutions.
+                                                            </p>
+                                                            <p style="height: 20px"></p>
+                                                        </td>
+                                                        <td style="padding-top: 5px;" align="center" width="30%"><img width="150" src="./School ERP Architecture_files/custom_aproch.png"></td>
+                                                    </tr>
+                                                    <tr valign="top" bgcolor="#363636">
+                                                        <td style="padding-left: 5px; padding-top: 5px;" align="justify" width="70%" height="120">
+                                                            <p><b>Reliable Support and Flexible Upgrade Policy :</b>&nbsp;
+                                                            Company’s support and maintenance services are ready to prove their quality on the rare occasions while emergency
+                                                             situations had to be covered. Standard support package also includes business-critical on-site support,
+                                                              free-of-charge fixes and upgrade to minor versions.
+                                                            </p>
+                                                            <p style="height: 20px"></p>
+                                                        </td>
+                                                        <td style="padding-top: 5px;" align="center" width="30%"><img width="150" src="./School ERP Architecture_files/reliable_support.png"></td>
+                                                    </tr>
+                                                    <tr valign="top" bgcolor="#363636">
+                                                        <td style="padding-left: 5px; padding-top: 5px;" align="justify" width="70%" height="120">
+                                                            <p><b>Network of Technology Partners :</b>&nbsp;
+                                                            Company believes in partnering with other Technology Leaders so we can provide you the best solution for your requirements.
+                                                            </p>
+                                                            <p style="height: 20px"></p>
+                                                        </td>
+                                                        <td style="padding-top: 5px;" align="center" width="30%"><img width="150" src="./School ERP Architecture_files/network_partner.png"></td>
+                                                    </tr>
+                                                    <tr valign="top" bgcolor="#363636">
+                                                        <td style="padding-left: 5px; padding-top: 5px;" align="justify" width="70%" height="120">
+                                                            <p><b>Experience on Other Domains :</b>&nbsp;
+                                                            Company has different experience across various domains. We provide Multimedia Solutions for Broadcasting
+                                                             and Animations Industries. We also provide Security Solutions for wide range of Industries. We also provide
+                                                              WMS &amp; ERP Solutions for wide range of Industries.
+                                                            </p>
+                                                            <p style="height: 20px"></p>
+                                                        </td>
+                                                        <td style="padding-top: 5px;" align="center" width="30%"><img width="150" src="./School ERP Architecture_files/Experience_on_Other_Domains.png"></td>
+                                                    </tr>
+                                                    <tr bgcolor="#363636">
+                                                        <td style="padding-left: 5px;" colspan="2">
+                                                            <p><b>Our Enterprise Application domains :</b></p>
+                                                            <p style="height: 10px"></p>
+                                                            <p data-simple-delete="true">
+                                                                </p><ul>
+                                                                    <li>Broadcasting</li>
+                                                                    <li>Multimedia &amp; Animation</li>
+                                                                    <li>Education</li>
+                                                                    <li>Security &amp; Surveillance</li>
+                                                                    <li>WMS &amp; Logistics </li>
+                                                                    <li>Banking</li>
+                                                                    <li>Insurance</li>
+                                                                    <li>Inventory</li>
+                                                                    <li>Finance</li>
+                                                                    <li>CRM &amp; HRM</li>
+                                                                </ul>
+                                                            <p data-simple-delete="true"></p>
+                                                            <p style="height: 20px"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr><td colspan="2" height="15"></td></tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">Sample Module Architecture</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; text-align: justify; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td><img src="./School ERP Architecture_files/Sample_Module_Architecture.png"></td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">FEATURE GUIDE</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; text-align: justify; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td height="4"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           &nbsp;&nbsp;School ERP offers complete feature sets for each and every processes implemented by Management.
+                                                          <p style=" height: 5px"></p>
+                                                          <p><b><u>Modules:</u></b></p>
+                                                          <p style=" height: 5px"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" width="560">
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Attendance Management</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Working days and holidays/off days setting</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Maintenance of the daily attendance of staff as well as of students too. Details regarding holidays and off days.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Leave Assignment and Management</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Maintaining leave notifications with every details and there approval.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Leave Approval</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Leave Approval Interface for approvers and for staff and students.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Library Management System</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Book Registration</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provides form for including any book or resource like CD, DVD under Library Controls.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Working Hours</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provides check on library working hours.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Book Search</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provides handle for students to search various books in the library based on their search keywords.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Checking Availability &amp; Placing Request</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provides status on the selected book and incase it is not available; it will record the request and honor this request when ever available.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Setting Charges and Fees Calculations</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">You can set fees and charges which would be calculated automatically, eg. Late submission charges, etc.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Inventory management system</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Purchase/Inwards</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Facilitates recording of new Inventory Items.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Out of Order/Outwards</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Facilitates recording of out of order or outward moving Inventory items.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Inventory Registration</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Facilitates adding Inventory control on any Item.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Event Management</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Event Details</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provide information of upcoming events.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Blogs</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provide users (Parents) to find feedbacks and blog their experience on events.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Time Table Generation Software</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Hours/Periods settings</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">U can drive time table generation based on hours or periods in day.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Subject and hour/period wedges</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Focus to the important subject and equally hours distribution for every Subject.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Assigning Teachers for each Subject</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Assigning teachers according to their skill &amp; experience.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Preference and Substitutions</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Particular preference such as first period should be of class teachers.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Transport Management</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Route settings</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Allows admin to layout the plan for selecting a route.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Boarding &amp; Elite Points </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Allows users (Parents) to know which are the boarding and elite points on the route.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Passenger counts </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provides count of students to be included on a route.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Fare settings</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Fares per route or distance will be automatically calculated.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Admission Management</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Form Distribution</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Distribution of forms through person and through internet from portal.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Form Acceptance</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Accepting the filled forms online.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Approval/Rejection</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Controls from which forms are validate and allowed for approval or rejection of the candidate.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Interview</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Details regarding applicant who attended interviews and eligible for admissions.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Enrollment</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Registering the applicant as a student as per allotted seats.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Student Information System</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Student Registration</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">You can easily allow candidate to register in your school. We request for their basic details.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Students Progress and  Analysis</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">You can easily access the overall review of student progress report at any time.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Student History </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">
+                                                                    All the details of the student can be viewed like:<br>
+                                                                    • Details of student’s mark sheet.<br>
+                                                                    • Details of student’s extra activities.<br>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Employee Information System</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Employee Registration</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Registration of every employee.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Skills and Career, Profile</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Each employee can provide their skills and experience so that it makes easy to know the strength and resources of Enterprise.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Examination &amp; Result Management</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">
+                                                                    Organizing Examination<br>
+                                                                    • Weekly/terminal/annual
+                                                                     </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Work flow implementation of organizing examination.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Subject inclusion, wedges, duration of exams</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">You can specify various attributes for examination.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Recording Results</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">You can record scores for each examination taken.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Setting Grades, Minimum and Maximum Scores</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">You can set various parameters which will decide Grades, Scores etc.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Report Card Generation, Publishing &amp; Distribution</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">This will also generate Report cards for all participants and publish the results in the required mode.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Web Management</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Internal and External web maintenance</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provides maintenance of School’s website and manage contents.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Information Publishing &amp; Email Alerts</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Update website contents with information like report cards, recent events, etc.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Student Alumni</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Creating Alumni</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provides handle for students to register and associate to their school mates.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Mailing and Searching</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provide groups and forums for students to communicate, even after leaving the school.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Fee Management</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Monthly Fees</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Management of fees collection at a fix periodic time.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Annual Fees</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Annual fees paid by the students.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Other Fees</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Other fees such as transportations and library fees etc.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Automated Calculations</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Actions like automated deductions of fees.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Payroll</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Setting various fields for Salary calculation</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Provides automated process of calculating salary of employees. It will also consider the days attended.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Pay Slip Generation </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">It will automatically generate pay slips and can also email the same if required.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Financial Accounting &amp; Bookkeeping</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Dual Entry based Ledger Accounting</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Covers accounting management solution.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Integration with all the other Accounting Modules</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">We will easily integrate this with other modules like Fees, Transportation, etc.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;To Do Compliance</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Setting To Do list and propagating to respective entities. This is the unique feature which can also be used as reminder, ex. Tracking compliance of must be performed practices across different divisions.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr><td height="15"></td></tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">INTEGRATION</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; text-align: justify; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr><td height="5"></td></tr>
+                                                    <tr>
+                                                        <td>As a key point in our solutions, the solution can easily integrate to your existing Back Office Applications and other enterprise applications. We can develop integration layer on request.</td>
+                                                    </tr>
+                                                    <tr><td height="15"></td></tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">SECURITY</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; text-align: justify; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td height="4"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                        <p>School ERP system can use SSL based secured transmission for important modules like user Loging, Payment receiving, etc.</p>
+                                                        <p style=" height: 15px"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" width="560">
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Standard Categories</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="70" style="padding-left: 5px;">Authentication</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Unique user codes and passwords for E-Bank channels access, Password expiration
+                                                                     and user disablement, User passwords stored one-way encrypted</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="70" style="padding-left: 5px;">Authorization</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">User credentials and privileges validation on every resource and application block,
+                                                                     Personal permissions on banking services</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="70" style="padding-left: 5px;">Cryptography</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">PKI and digital certificates as a standard for user authentication, integrity
+                                                                     of data interchange, confidentiality and preventing repudiation issues</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="70" style="padding-left: 5px;">Session Management</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Unique session identifiers and secured session details storage, Session
+                                                                     lifetime control on every discrete user action</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="70" style="padding-left: 5px;">Sensitive Data Management</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Sensitive data stored, sent over network and logged in encrypted form
+                                                                     Infrastructure Security Secured network infrastructure provided by the Bank, Encrypted traffic between application tiers, SSL
+                                                                      where applicable, Securing E-Bank servers</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="70" style="padding-left: 5px;">Auditing and Logging </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Full log of user activity, Audit of application activity through all
+                                                                     application tiers</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20"></td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">SCALABILITY AND AVAILABILITY</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; text-align: justify; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td height="4"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                        <p>&nbsp;&nbsp;Depending on requirements for availability and operations continuity, Portal can be deployed in different setup configurations.</p>
+                                                        <p style=" height: 5px"></p>
+                                                        <p><b><u>Notifications and Alerts</u></b></p>
+                                                        <p style=" height: 5px"></p>
+                                                        <p>&nbsp;&nbsp;ERP can support a fully functional messaging platform allowing configurable template-based reports distribution to customers.
+                                                         Generally distribution channels cover following service types:</p>
+                                                         <p style=" height: 5px"></p>
+                                                         <p style="padding-left: 20px;">
+                                                         •	Immediately on explicit request <br>
+                                                         •	Subscription by schedule - fax or e-mail <br>
+                                                         •	Notification on event - SMS or e-mail  <br>
+                                                         </p>
+                                                         <p style=" height: 5px"></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" width="560">
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Customer Security Options</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="50" style="padding-left: 5px;">SMS</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Card transaction, movement on bank account, payment order processed, user-defined, bank-defined</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="50" style="padding-left: 5px;">Email</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Daily statements, currency rates, monthly reports; user-defined; bank-defined</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="50" style="padding-left: 5px;">Fax</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Current statement (generated and sent back on-the-fly during a phone conversation), daily statements, currency rates</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20"></td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">SCALABILITY AND AVAILABILITY</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; text-align: justify; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td height="20"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" width="560">
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Project Characteristics</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Type</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Multi Tier, Client – Server Web Application.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Front End Tech </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Heavy Client/ HTML,DHTML, Style Sheets, Ajax, Client Scripting, Images &amp; Graphics, Flash Animations etc.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Middle Tier Tech</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Java/ PHP Technology / ASP.Net &amp; Other .Net Technologies</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Database</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">MySql Server</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Hosting</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Apache, Windows server / Apache, Linux, MySql, PHP combination.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Time Unit</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Working week</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">100 weeks = 4000 human hours</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Working duration</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">14 weeks (3 and half months).</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Life Cycle Stages</td>
+                                                                    <td style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;">&nbsp;&nbsp;Duration</td>
+                                                                    <td style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;">&nbsp;&nbsp;Description</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="28%" height="40" style="padding-left: 5px;">Requirement Gathering</td>
+                                                                    <td align="left" width="15%" style="padding-left: 5px;">2 Weeks.</td>
+                                                                    <td align="left" width="57%" style="padding-left: 5px;">In person meeting &amp; documentation.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="28%" height="40" style="padding-left: 5px;">UAT Demo</td>
+                                                                    <td align="left" width="15%" style="padding-left: 5px;">7 Weeks.</td>
+                                                                    <td align="left" width="57%" style="padding-left: 5px;">Design &amp; Coding to implement the requirements.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="28%" height="40" style="padding-left: 5px;">Production</td>
+                                                                    <td align="left" width="15%" style="padding-left: 5px;">5 Weeks.</td>
+                                                                    <td align="left" width="57%" style="padding-left: 5px;">Plan Hosting, Integration Testing.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="28%" height="40" style="padding-left: 5px;">Total Weeks to Go Live</td>
+                                                                    <td colspan="2" align="left" width="72%" style="padding-left: 5px;">14 Weeks.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td colspan="2" style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Development Model</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="90" style="padding-left: 5px;">Resources</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">
+                                                                    2. Front Tier Application Developer with 5+ Years Experience.<br>
+                                                                    3. Middle Tier Technology Developer JSP/PHP/ASP 5+ Years &nbsp;&nbsp;&nbsp;&nbsp;Experience.<br>
+                                                                    2. SQL / PLSQL Developer 10+ Years of Experience.<br>
+                                                                    1. Senior Programmer 15+ Years of Experience.
+                                                                    </td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="50" style="padding-left: 5px;">Agile Methodology</td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">We are working on Agile based project development cycle with small
+                                                                    deliverables focusing on individual modules which are at the end integrated to meet the requirements.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">Deliverable </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">There can be a small deliverable every week.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="50" style="padding-left: 5px;">Status Call </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">Every week Tuesday &amp; Friday between the Team, Onsite Coordinator and
+                                                                    Client side Manager if required.</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="50" style="padding-left: 5px;">Documentation </td>
+                                                                    <td align="left" width="70%" style="padding-left: 5px;">We might not document all aspects, but we will not miss important aspects
+                                                                    like Requirement Document, Design Document, Coding Standards, Defect Logging, Release Note for each deliverable.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Warranty</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">We deliver the solutions with 0% defect, so rest assured
+                                                                     we don’t discuss about bug fix. We will support minor changes and updates free of cost for the span on 1 year.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                            <p style=" height: 10px"></p>
+                                                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                                                <tbody><tr align="center" bgcolor="#66CC33">
+                                                                    <td style="color: #000000; font: Verdana 11; font-weight: bold; text-align: left;" height="25">&nbsp;&nbsp;Support</td>
+                                                                </tr>
+                                                                <tr bgcolor="#363636">
+                                                                    <td align="left" width="30%" height="40" style="padding-left: 5px;">We can provide you a very efficient &amp; flexible support
+                                                                     plan based on your requirements.</td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20"></td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2" width="600" height="40" style="background: url(image/telenobar.png) no-repeat; font: Verdana 11; font-weight: bold;">Contuct Us</td>
+                                        </tr>
+                                        <tr style="font: Verdana; font-size: 11px; color: #EEEEEE">
+                                            <td style="background: url(image/bar02.png) repeat-y;" colspan="2" width="600">
+                                                <table width="560" align="center" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                        <td colspan="2" height="4"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="150" height="150">
+                                                        <img src="./School ERP Architecture_files/ContactUs_Icon.png">
+                                                        </td>
+                                                        <td valign="middle" align="center" width="410" height="150">
+                                                            <b>MR. SHUBHANKAR BAIDYA (CMD)</b><p></p><p>
+                                                            <b>SUNSKY SOFTWARE TECHNOLOGIES (P) LTD.</b><br>
+                                                            B-7/27(S), CENTRAL PARK, KALYANI, NDAIA<br>
+                                                            PH: +91-33-25025040, FAX: +91-33-25025040<br>
+                                                            MOBILE: +91-9331834945, 9433062249, 9836265288<br>
+                                                            EMAIL: <a style=" color: #EEEEEE" href="https://accounts.google.com/ServiceLogin?service=mail&amp;passive=true&amp;rm=false&amp;continue=https://mail.google.com/mail/ca/&amp;ss=1&amp;scc=1&amp;ltmpl=default&amp;ltmplcache=2">SUNSKYSOFTWARE@GMAIL.COM</a><br>
+                                                            WEBSITE: <a style=" color: #EEEEEE" href="http://www.sunskyindia.com/index.html">WWW.SUNSKYINDIA.COM</a></p><p>
+                                                            <a style=" color: #EEEEEE" href="http://117.247.69.92/acm/Contact_us/Contact_us.html">For SMS</a>
+
+                                                        </p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" height="20"></td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                                <td class="rtag" style="background: url(image/rtbar1.jpg) repeat-y">
+                                    <table width="100%" cellpadding="2" cellspacing="3">
+                                        <tbody><tr>
+                                            <td style="padding-left: 10px" class="text2">Latest News</td>
+                                        </tr>
+                                        <tr>
+                                            <td><hr style="width: 90%; background-color: #DDDDDD;" size=".5"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                  <ul id="righttag" class="righttag">
+                                                      <li><a href="http://117.247.69.92/acm/latest_features/latest_features.html">Latest Features</a><img width="25" src="./School ERP Architecture_files/new.gif"></li>
+                                                      <li><a href="http://117.247.69.92/acm/Award_and_achievments/Award_and_achievments.html">Awards</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Award_and_achievments/Award_and_achievments.html">Achivement</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Technology</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Up-Coming Products</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Up-Coming Software</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Latest Updates</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Latest Technology</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Channel partners</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Cable_TV_Show/Cable_TV_Show.html">Cable TV Show</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">News of the Month: Cable-TV Digitization</a></li>
+                                                  </ul><br>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 10px" class="text2">Stay Connected</td>
+                                        </tr>
+                                        <tr>
+                                            <td><hr style="width: 90%; background-color: #DDDDDD;" size=".5"></td>
+                                        </tr>
+                                        <tr id="righttag" class="righttag">
+                                            <td>
+                                                <div>
+                                                  <ul>
+                                                      <li><a href="http://www.sunskysoftware.com/auth/login.php">Login</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Email</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Contact_us/Contact_us.html">Inquiry</a></li>
+                                                      <li><a href="https://www.facebook.com/SunskySoftwareTechnologies">FaceBook</a></li>
+                                                      <li><a href="https://twitter.com/SunskySoftware">Twitter</a></li>
+                                                      <li><a href="https://plus.google.com/">Google</a></li>
+                                                      <li><a href="http://www.youtube.com/channel/UCw6NyfEltzxx98sjWtPdXFA">You Tube</a></li>
+                                                      <li><a href="http://in.yahoo.com/?p=us">Yahoo</a></li>
+                                                      <li><a href="http://sunskysoftware.blog.com/">Blogs</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/FAQ/FAQ.html">FAQs</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/how_to_purchase/how_to_purchase.html">How to Purchase</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Support/Support.html">Support</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Features</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Facilities</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Advantages</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/request_features/request_features.html">Request Features</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Software_update/Software_update.html">Request Update</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Contact_us/Contact_us.html">Request Support</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/License_renewal/License_renewal.html">Request Renewal</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Software_conversion/Software_conversion.html">Request Software<br> Conversion</a></li><br>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Request Quote</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Terms_and_conditions/Terms_and_conditions.html">Client Terms &amp; Condition</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Activation_guide/Activation_guide.html">Activation Guide</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Renewal Process</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Conversion Guide</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">SMS Activation</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Support_information/Support_information.html">Online Activation</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">ACM User Guide</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/email/email.html">Online Help</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Seminers_and_trade_shows/Seminers_and_trade_shows.html">Trade fair</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Seminers_and_trade_shows/Seminers_and_trade_shows.html">Cable TV Show</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Photo_and_video_galleries/Photo_and_video_galleries.html">Photo Gallerie</a></li>
+                                                      <li><a href="http://117.247.69.92/acm/Contact_us/Contact_us.html">Purchase Request</a></li>
+                                                  </ul>
+                                               </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody></table>
+
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td colspan="3">
+                        <div class="foot-container-area">
+                            <ul id="foot-container" class="foot-container">
+                                <li><a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">Copyright © Sunsky Software</a></li>
+                                <li><span class="divider1 divider1-vert"></span></li>
+                                <li><a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">Privacy Policy</a></li>
+                                <li><span class="divider1 divider1-vert"></span></li>
+                                <li><a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">Disclimer</a></li>
+                                <li><span class="divider1 divider1-vert"></span></li>
+                                <li><a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">Terms of Use</a></li>
+                                <li><span class="divider1 divider1-vert"></span></li>
+                                <li><a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">Contact Us</a></li>
+                                <li><span class="divider1 divider1-vert"></span></li>
+                                <li><a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">Site Map</a></li>
+                                <li><span class="divider1 divider1-vert"></span></li>
+                                <li><a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">Feedback</a></li>
+                                <li><span class="divider1 divider1-vert"></span></li>
+                                <li><a href="http://117.247.69.92/acm/school_erp_project/school_erp_project.html#">Trademarks</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody></table>
+            </form>
+        </td></tr>
+      </tbody></table>
+
+        
+
+
+<iframe frameborder="0" scrolling="no" style="background-color: transparent; border: 0px; display: none;" src="./School ERP Architecture_files/saved_resource.html"></iframe><div id="GOOGLE_INPUT_CHEXT_FLAG" input="" input_stat="{&quot;tlang&quot;:true,&quot;tsbc&quot;:true,&quot;pun&quot;:true,&quot;mk&quot;:true,&quot;ss&quot;:true}" style="display: none;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

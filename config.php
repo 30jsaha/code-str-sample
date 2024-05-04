@@ -3,7 +3,7 @@
  * Author: Jyotirmoy Saha
  * Maintained By: Jyotirmoy Saha
  */
-define('DEBUG_APP', false);
+define('DEBUG_APP', true);
 if ((isset($_GET['error']) && $_GET['error'] == 1) || DEBUG_APP) {
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
@@ -20,7 +20,7 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 $domain = $_SERVER['HTTP_HOST'];
 $xip =  gethostbyname($domain);
 ## Flag for checking weather the project is on the local server or live server
-define('IS_LOCAL', false);
+define('IS_LOCAL', true);
 define('IS_PHPMAILER', true);
 
 ## Flag for AJAX work to tell the server and the browser 
@@ -91,7 +91,7 @@ define('AJAX_URL', HOST_URL . "cx/");
 // define('CAJAX_URL', HOST_URL . "cx/");
 define('AJAX_REQUEST', 'ajax_action');
 
-define('ASSETS_VERSION', (string)'0.314');
+define('ASSETS_VERSION', (string)'0.319');
 
 define('FORM_HANDLER_URL', HOST_URL . "frmsbt/");
 // define('FORM_UI_URL', HOST_URL . "forms/ui/");
@@ -398,6 +398,7 @@ session_start();
 $email = $password = $company_business_name = $company_website = $company_address = "";
 $company_name = $db_cfg['company_name'];
 $company_logo = $db_cfg['company_default_logo'];
+$company_title_logo = $db_cfg['company_title_logo'];
 if (isUserLoggedIn()) {
     // rip($_SESSION);exit();
     $sc = getData(Table::CLIENT, [
@@ -437,6 +438,7 @@ define('DEBUG_MAIL', true);
 define('COMPANY_NAME', $company_name);
 define('COMPANY_BUSINESS_NAME', $company_business_name);
 define('COMPANY_LOGO_PATH', CDN_URL.'img/'.$company_logo);
+define('COMPANY_TITLE_LOGO_PATH', CDN_URL.'img/'.$company_title_logo);
 define('COMPANY_WEBSITE', $company_website);
 define('WEBSITE_TITLE', COMPANY_BUSINESS_NAME);
 

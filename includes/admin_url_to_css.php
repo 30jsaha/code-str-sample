@@ -38,4 +38,4 @@ if($action != 'generated-invoice'): ?>
 <link href="<?=CDN_URL; ?>css/admin/main.css?v=<?=ASSETS_VERSION; ?>" rel="stylesheet">
 <link href="<?=CDN_URL; ?>css/admin/fpage_loader.css?v=<?=ASSETS_VERSION; ?>" rel="stylesheet">
 <!-- title x-iccon -->
-<link rel="shortcut icon" href="<?=COMPANY_LOGO_PATH; ?>" type="image/x-icon">
+<link rel="shortcut icon" href="<?=COMPANY_TITLE_LOGO_PATH; ?>" type="image/x-icon">

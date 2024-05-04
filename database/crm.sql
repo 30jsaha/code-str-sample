@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 24, 2024 at 12:21 PM
--- Server version: 5.7.23-23
--- PHP Version: 8.1.27
+-- Host: 127.0.0.1
+-- Generation Time: May 04, 2024 at 05:49 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `papercup_crm`
+-- Database: `crm`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `attendance` (
   `id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL DEFAULT '1001',
+  `client_id` int(11) NOT NULL DEFAULT 1001,
   `employee_id` int(11) NOT NULL,
   `attendance_date` date NOT NULL,
   `attendance_month` int(11) NOT NULL,
@@ -39,13 +39,13 @@ CREATE TABLE `attendance` (
   `working_hours` varchar(50) DEFAULT NULL,
   `early_log_off_reason` varchar(250) DEFAULT NULL,
   `early_log_off_mints` varchar(50) DEFAULT NULL,
-  `is_late_entry` int(11) NOT NULL DEFAULT '0' COMMENT '0 = NO, 1 = YEs',
+  `is_late_entry` int(11) NOT NULL DEFAULT 0 COMMENT '0 = NO, 1 = YEs',
   `late_mints` varchar(50) DEFAULT NULL,
   `late_entry_reason` varchar(200) DEFAULT NULL,
-  `admin_approval_for_late_entry` int(11) NOT NULL DEFAULT '0' COMMENT '0 = NOT APPROVED, 1 = APPROVED',
+  `admin_approval_for_late_entry` int(11) NOT NULL DEFAULT 0 COMMENT '0 = NOT APPROVED, 1 = APPROVED',
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `active` int(11) NOT NULL DEFAULT '1' COMMENT '1 = Cycle Active,\r\n2 = Cycle closed',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `active` int(11) NOT NULL DEFAULT 1 COMMENT '1 = Cycle Active,\r\n2 = Cycle closed',
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -700,42 +700,42 @@ CREATE TABLE `client` (
   `validity_period` int(11) NOT NULL COMMENT 'In months',
   `expiry_date` date NOT NULL,
   `total_charge` double NOT NULL COMMENT 'Regiustration charge',
-  `rental_type` int(11) NOT NULL DEFAULT '0' COMMENT '0 - Monthly , 1 - Yearly',
+  `rental_type` int(11) NOT NULL DEFAULT 0 COMMENT '0 - Monthly , 1 - Yearly',
   `rental_charge` double NOT NULL,
   `paid_amount` double NOT NULL,
-  `due_amount` double NOT NULL DEFAULT '0',
-  `payment_status` int(11) NOT NULL DEFAULT '0' COMMENT '0 - Due, 1 - Paid',
-  `sms_enabled` int(11) NOT NULL DEFAULT '0' COMMENT '1 - Enable, 0 - Disable',
-  `google_api_enable` int(11) NOT NULL DEFAULT '0' COMMENT '1 - Enable, 0 - Disable',
-  `whatsapp_integration_enable` int(11) NOT NULL DEFAULT '0' COMMENT '1 - Enable, 0 - Disable',
-  `live_location_tracking_enable` int(11) NOT NULL DEFAULT '0' COMMENT '1 - Enable, 0 - Disable',
-  `multi_language_support_enable` int(11) NOT NULL DEFAULT '0' COMMENT '1 - Enable, 0 - Disable',
+  `due_amount` double NOT NULL DEFAULT 0,
+  `payment_status` int(11) NOT NULL DEFAULT 0 COMMENT '0 - Due, 1 - Paid',
+  `sms_enabled` int(11) NOT NULL DEFAULT 0 COMMENT '1 - Enable, 0 - Disable',
+  `google_api_enable` int(11) NOT NULL DEFAULT 0 COMMENT '1 - Enable, 0 - Disable',
+  `whatsapp_integration_enable` int(11) NOT NULL DEFAULT 0 COMMENT '1 - Enable, 0 - Disable',
+  `live_location_tracking_enable` int(11) NOT NULL DEFAULT 0 COMMENT '1 - Enable, 0 - Disable',
+  `multi_language_support_enable` int(11) NOT NULL DEFAULT 0 COMMENT '1 - Enable, 0 - Disable',
   `sms_package_code` varchar(50) DEFAULT NULL,
-  `registration_charge` double NOT NULL DEFAULT '0',
+  `registration_charge` double NOT NULL DEFAULT 0,
   `sms_recharge_date` date DEFAULT NULL,
-  `sms_validity_period` int(11) NOT NULL DEFAULT '0' COMMENT 'In Month',
-  `sms_gateway_type` int(11) NOT NULL DEFAULT '1' COMMENT '1 - Saha CyberTech SMS API, 2 - Personal SMS api',
+  `sms_validity_period` int(11) NOT NULL DEFAULT 0 COMMENT 'In Month',
+  `sms_gateway_type` int(11) NOT NULL DEFAULT 1 COMMENT '1 - Saha CyberTech SMS API, 2 - Personal SMS api',
   `sms_gateway` varchar(10) DEFAULT NULL,
   `sms_endpoint` varchar(250) DEFAULT NULL,
   `sms_sid` varchar(10) DEFAULT NULL,
-  `send_auto_sms` int(11) NOT NULL DEFAULT '0' COMMENT '0 - Manual, 1 - Automatic',
-  `total_sms` int(11) NOT NULL DEFAULT '0',
-  `sms_sent` int(11) NOT NULL DEFAULT '0',
-  `sms_balance` int(11) NOT NULL DEFAULT '0',
-  `sms_sid_enable` int(11) NOT NULL DEFAULT '0' COMMENT '0 - Disable, 1 - Enable',
-  `max_product` int(11) NOT NULL DEFAULT '0',
-  `max_user` int(11) NOT NULL DEFAULT '0',
-  `max_manager` int(11) NOT NULL DEFAULT '0',
-  `max_category` int(11) NOT NULL DEFAULT '0',
+  `send_auto_sms` int(11) NOT NULL DEFAULT 0 COMMENT '0 - Manual, 1 - Automatic',
+  `total_sms` int(11) NOT NULL DEFAULT 0,
+  `sms_sent` int(11) NOT NULL DEFAULT 0,
+  `sms_balance` int(11) NOT NULL DEFAULT 0,
+  `sms_sid_enable` int(11) NOT NULL DEFAULT 0 COMMENT '0 - Disable, 1 - Enable',
+  `max_product` int(11) NOT NULL DEFAULT 0,
+  `max_user` int(11) NOT NULL DEFAULT 0,
+  `max_manager` int(11) NOT NULL DEFAULT 0,
+  `max_category` int(11) NOT NULL DEFAULT 0,
   `max_banner_content` int(11) NOT NULL,
-  `max_special_menu` int(11) NOT NULL DEFAULT '4',
-  `product_added` int(11) NOT NULL DEFAULT '0',
-  `user_added` int(11) NOT NULL DEFAULT '0' COMMENT 'General Employee',
-  `manager_added` int(11) NOT NULL DEFAULT '0',
-  `category_added` int(11) NOT NULL DEFAULT '0',
+  `max_special_menu` int(11) NOT NULL DEFAULT 4,
+  `product_added` int(11) NOT NULL DEFAULT 0,
+  `user_added` int(11) NOT NULL DEFAULT 0 COMMENT 'General Employee',
+  `manager_added` int(11) NOT NULL DEFAULT 0,
+  `category_added` int(11) NOT NULL DEFAULT 0,
   `feature_plan` int(11) NOT NULL COMMENT '7 - Basic, 2 - Standard, 1 - Premium, 3 - Custom',
   `project_service_type` int(11) NOT NULL COMMENT '1 - Grocery, 2 - Texttile, 3 - Home Appliances, 4 - All',
-  `application_server` int(11) DEFAULT '1' COMMENT '1 - Saha CyberTech Server, 2 - Company Own server, 3 - 3rdf Party server',
+  `application_server` int(11) DEFAULT 1 COMMENT '1 - Saha CyberTech Server, 2 - Company Own server, 3 - 3rdf Party server',
   `mac_id` varchar(20) DEFAULT NULL COMMENT 'MAC ID of the server',
   `ip` varchar(15) DEFAULT NULL COMMENT 'ip of the server',
   `site_url` varchar(200) DEFAULT NULL,
@@ -744,7 +744,7 @@ CREATE TABLE `client` (
   `pan_card` varchar(100) DEFAULT NULL COMMENT 'Document',
   `company_director_list` varchar(100) DEFAULT NULL COMMENT 'Document',
   `company_master_data` varchar(100) DEFAULT NULL COMMENT 'Document',
-  `company_type` int(11) NOT NULL DEFAULT '1' COMMENT '1 - PVT, 2 - LTD, 3 - LLP, 4 - Partnership, 5 - Propreitary, 6 - Others',
+  `company_type` int(11) NOT NULL DEFAULT 1 COMMENT '1 - PVT, 2 - LTD, 3 - LLP, 4 - Partnership, 5 - Propreitary, 6 - Others',
   `cin_document` varchar(100) DEFAULT NULL COMMENT 'Document',
   `moa_aoa` varchar(100) DEFAULT NULL COMMENT 'Document',
   `partnership_deed` varchar(100) DEFAULT NULL COMMENT 'Document',
@@ -758,9 +758,9 @@ CREATE TABLE `client` (
   `ifsc_code` varchar(20) DEFAULT NULL,
   `branch_address` varchar(200) DEFAULT NULL,
   `cancelled_cheque` varchar(100) DEFAULT NULL COMMENT 'Document',
-  `active` int(11) NOT NULL DEFAULT '1',
+  `active` int(11) NOT NULL DEFAULT 1,
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -768,7 +768,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`client_id`, `user_id`, `name`, `mobile`, `email`, `address`, `city`, `district`, `state`, `pin_code`, `website_name`, `company_name`, `company_logo`, `company_email`, `company_email_password`, `company_mobile`, `company_phone`, `company_address`, `company_city`, `company_district`, `company_state`, `company_pincode`, `gstin_no`, `tan`, `pan`, `joined_date`, `validity_period`, `expiry_date`, `total_charge`, `rental_type`, `rental_charge`, `paid_amount`, `due_amount`, `payment_status`, `sms_enabled`, `google_api_enable`, `whatsapp_integration_enable`, `live_location_tracking_enable`, `multi_language_support_enable`, `sms_package_code`, `registration_charge`, `sms_recharge_date`, `sms_validity_period`, `sms_gateway_type`, `sms_gateway`, `sms_endpoint`, `sms_sid`, `send_auto_sms`, `total_sms`, `sms_sent`, `sms_balance`, `sms_sid_enable`, `max_product`, `max_user`, `max_manager`, `max_category`, `max_banner_content`, `max_special_menu`, `product_added`, `user_added`, `manager_added`, `category_added`, `feature_plan`, `project_service_type`, `application_server`, `mac_id`, `ip`, `site_url`, `trade_license`, `gstin_certificate`, `pan_card`, `company_director_list`, `company_master_data`, `company_type`, `cin_document`, `moa_aoa`, `partnership_deed`, `company_photograph_1`, `company_photograph_2`, `company_photograph_3`, `corporate_mail_id`, `account_number`, `account_holder_name`, `bank_name`, `ifsc_code`, `branch_address`, `cancelled_cheque`, `active`, `status`, `creation_date`) VALUES
-(1001, NULL, 'Paperlink Softwares', '7439198181', 'info@paperlinksoftwares.com', 'Webel Tower 2, BN-9, BN Block, Sector - V, Bidhannagar', 'kolkata', 'North 24 Parganas', 'West Bengal', '700091', 'https://www.paperlinksoftwares.com', 'Paperlink Softwares Private Limited', 'pl_gold.png', 'info@paperlinksoftwares.com', '', '7439198181', NULL, 'Webel Tower 2, BN-9, BN Block, Sector - V, Bidhannagar', 'kolkata', 'North 24 Parganas', 'West Bengal', '700091', '19AAICP3486A1ZC', NULL, NULL, '2022-01-01', 12, '2022-12-31', 50000, 1, 4000, 6000, 44000, 0, 1, 1, 1, 1, 1, NULL, 15000, '2022-01-01', 12, 1, NULL, NULL, NULL, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '50200087199999', 'Paperlink Softwares Private Limited', NULL, 'HDFC0007416', NULL, NULL, 1, 'A', '2024-03-23 07:21:00');
+(1001, NULL, 'Saha CyberTech', '8777748122', 'info@sahacybertech.in', 'Barrackpore, West Bengal', 'kolkata', 'North 24 Parganas', 'West Bengal', '700123', 'https://sahacybertech.in/', 'Saha CyberTech Private Limited', 'logo.png', 'info@sahacybertech.in', '', '8777748122', NULL, 'Webel Tower 2, BN-9, BN Block, Sector - V, Bidhannagar', 'kolkata', 'North 24 Parganas', 'West Bengal', '700091', '19AAICP3486A1ZC', NULL, NULL, '2022-01-01', 12, '2022-12-31', 50000, 1, 4000, 6000, 44000, 0, 1, 1, 1, 1, 1, NULL, 15000, '2022-01-01', 12, 1, NULL, NULL, NULL, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '50200087199999', 'Paperlink Softwares Private Limited', NULL, 'HDFC0007416', NULL, NULL, 1, 'A', '2024-03-28 13:03:18');
 
 -- --------------------------------------------------------
 
@@ -780,9 +780,9 @@ CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
   `department_name` varchar(100) DEFAULT NULL,
-  `added_by` int(11) NOT NULL DEFAULT '0' COMMENT 'Current User ID',
+  `added_by` int(11) NOT NULL DEFAULT 0 COMMENT 'Current User ID',
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -806,15 +806,15 @@ INSERT INTO `departments` (`id`, `client_id`, `department_name`, `added_by`, `st
 
 CREATE TABLE `designations` (
   `id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL DEFAULT '1001',
+  `client_id` int(11) NOT NULL DEFAULT 1001,
   `designation_title` varchar(150) NOT NULL COMMENT 'Name of the Designatioon',
-  `responsibilities` mediumtext COMMENT 'Text Input',
+  `responsibilities` mediumtext DEFAULT NULL COMMENT 'Text Input',
   `experience_required` varchar(20) DEFAULT NULL COMMENT 'Text Input\r\nFormat = 00 Years 00 Months',
   `added_by` int(11) NOT NULL COMMENT 'Current User ID',
-  `active` int(11) NOT NULL DEFAULT '1' COMMENT '0 = Inactive 1 = Active',
+  `active` int(11) NOT NULL DEFAULT 1 COMMENT '0 = Inactive 1 = Active',
   `status` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A = Active / Available D = Deleted',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `last_update_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -858,7 +858,7 @@ CREATE TABLE `domestic_clients_actions` (
   `dc_id` int(11) NOT NULL,
   `action_user_id` int(11) NOT NULL,
   `changed_status` int(11) NOT NULL,
-  `previous_status` int(11) NOT NULL DEFAULT '0',
+  `previous_status` int(11) NOT NULL DEFAULT 0,
   `creation_date` datetime NOT NULL,
   `infotxt` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -873,10 +873,10 @@ CREATE TABLE `domestic_clients_data` (
   `id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
   `business_phone_no` varchar(15) DEFAULT NULL,
-  `business_details` longtext,
-  `active` int(11) NOT NULL DEFAULT '1',
-  `status` int(11) NOT NULL DEFAULT '1',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `business_details` longtext DEFAULT NULL,
+  `active` int(11) NOT NULL DEFAULT 1,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -887,7 +887,7 @@ CREATE TABLE `domestic_clients_data` (
 
 CREATE TABLE `employee_details` (
   `id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL DEFAULT '1001',
+  `client_id` int(11) NOT NULL DEFAULT 1001,
   `employee_name` varchar(100) NOT NULL,
   `employee_mobile` varchar(15) DEFAULT NULL,
   `employee_email` varchar(30) DEFAULT NULL,
@@ -898,10 +898,10 @@ CREATE TABLE `employee_details` (
   `employee_designation_id` int(11) NOT NULL,
   `employee_date_of_joinning` date DEFAULT NULL,
   `employee_experience_duration` varchar(20) DEFAULT NULL COMMENT 'Format = 00 Years 00 Months',
-  `employee_payroll` int(11) NOT NULL DEFAULT '1' COMMENT '1 = company payroll\r\n2 = contact',
-  `employee_grade` int(11) NOT NULL DEFAULT '4',
+  `employee_payroll` int(11) NOT NULL DEFAULT 1 COMMENT '1 = company payroll\r\n2 = contact',
+  `employee_grade` int(11) NOT NULL DEFAULT 4,
   `employee_id` varchar(10) DEFAULT NULL,
-  `department_id` int(11) NOT NULL DEFAULT '0',
+  `department_id` int(11) NOT NULL DEFAULT 0,
   `salary_amount` varchar(10) DEFAULT NULL,
   `webmail_address` varchar(100) DEFAULT NULL,
   `current_address` varchar(200) DEFAULT NULL,
@@ -914,15 +914,15 @@ CREATE TABLE `employee_details` (
   `salary_account_ifsc_code` varchar(20) DEFAULT NULL,
   `uan_number` varchar(20) DEFAULT NULL,
   `esic_ip_number` varchar(50) DEFAULT NULL,
-  `remarks` mediumtext,
+  `remarks` mediumtext DEFAULT NULL,
   `remark_by` int(11) DEFAULT NULL COMMENT 'Current User ID',
   `employee_added_by` int(11) NOT NULL COMMENT 'Current User ID',
   `last_working_day` date DEFAULT NULL,
-  `active` int(11) NOT NULL DEFAULT '1' COMMENT '0 = Inactive\r\n1 = Active\r\n2 = RESIGNED\r\n3 = ABSCONDED\r\n4 = SERVING_NOTICE',
+  `active` int(11) NOT NULL DEFAULT 1 COMMENT '0 = Inactive\r\n1 = Active\r\n2 = RESIGNED\r\n3 = ABSCONDED\r\n4 = SERVING_NOTICE',
   `status` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A = Active / Available\r\nD = Deleted',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `reporting_time` int(11) NOT NULL DEFAULT '0'
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `last_update_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `reporting_time` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -980,7 +980,7 @@ CREATE TABLE `employee_reporting_manager` (
   `assign_date` date DEFAULT NULL,
   `dismiss_date` date DEFAULT NULL,
   `status` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A = Active, D = Deactive',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1035,10 +1035,10 @@ CREATE TABLE `holidays` (
   `name` varchar(100) DEFAULT NULL,
   `file_name` varchar(100) DEFAULT NULL,
   `uploaded_by` int(11) NOT NULL,
-  `active` int(11) NOT NULL DEFAULT '1',
+  `active` int(11) NOT NULL DEFAULT 1,
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_active_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `last_active_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1049,33 +1049,33 @@ CREATE TABLE `holidays` (
 
 CREATE TABLE `invoice` (
   `id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL DEFAULT '1001',
+  `client_id` int(11) NOT NULL DEFAULT 1001,
   `invoice_number` varchar(20) DEFAULT NULL,
-  `invoice_count_number` int(11) NOT NULL DEFAULT '1',
+  `invoice_count_number` int(11) NOT NULL DEFAULT 1,
   `invoice_date` date DEFAULT NULL,
-  `invoice_month` int(11) NOT NULL DEFAULT '0' COMMENT 'Current Month',
-  `invoice_year` int(11) NOT NULL DEFAULT '0' COMMENT 'Current Year',
+  `invoice_month` int(11) NOT NULL DEFAULT 0 COMMENT 'Current Month',
+  `invoice_year` int(11) NOT NULL DEFAULT 0 COMMENT 'Current Year',
   `company_address` varchar(200) DEFAULT NULL,
   `company_gstin_number` varchar(20) DEFAULT NULL,
   `company_bank_account_no` varchar(20) DEFAULT NULL,
   `company_ifsc_code` varchar(15) DEFAULT NULL,
-  `mode_of_payment` int(11) NOT NULL DEFAULT '1' COMMENT '1 = NEFT\r\n2 = CHEQUE\r\n3 = CASH\r\n4 = UPI',
+  `mode_of_payment` int(11) NOT NULL DEFAULT 1 COMMENT '1 = NEFT\r\n2 = CHEQUE\r\n3 = CASH\r\n4 = UPI',
   `billing_name` varchar(100) DEFAULT NULL,
   `billing_address` varchar(250) DEFAULT NULL,
   `billing_gstin` varchar(20) DEFAULT NULL,
   `billing_email` varchar(80) DEFAULT NULL,
   `billing_phone` varchar(15) DEFAULT NULL,
-  `taxable_amount` double NOT NULL DEFAULT '0',
-  `discount_amount` double NOT NULL DEFAULT '0',
-  `is_gst_bill` int(11) NOT NULL DEFAULT '1' COMMENT '1 = YES\r\n2 = NO',
-  `cgst_amount` double NOT NULL DEFAULT '0',
-  `sgst_amount` double NOT NULL DEFAULT '0',
-  `igst_amount` double NOT NULL DEFAULT '0',
-  `grand_total_amount` double NOT NULL DEFAULT '0',
-  `advance_amount` double NOT NULL DEFAULT '0',
-  `due_amount` double NOT NULL DEFAULT '0',
+  `taxable_amount` double NOT NULL DEFAULT 0,
+  `discount_amount` double NOT NULL DEFAULT 0,
+  `is_gst_bill` int(11) NOT NULL DEFAULT 1 COMMENT '1 = YES\r\n2 = NO',
+  `cgst_amount` double NOT NULL DEFAULT 0,
+  `sgst_amount` double NOT NULL DEFAULT 0,
+  `igst_amount` double NOT NULL DEFAULT 0,
+  `grand_total_amount` double NOT NULL DEFAULT 0,
+  `advance_amount` double NOT NULL DEFAULT 0,
+  `due_amount` double NOT NULL DEFAULT 0,
   `status` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A = Active\r\nD = Deactive/Deleted',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1118,12 +1118,12 @@ CREATE TABLE `invoice_details` (
   `client_id` int(11) NOT NULL,
   `invoice_id` int(11) NOT NULL,
   `billing_description` varchar(250) DEFAULT NULL,
-  `billing_quantity` int(11) NOT NULL DEFAULT '0',
-  `billing_rate` double NOT NULL DEFAULT '0',
-  `billing_per` int(11) NOT NULL DEFAULT '0',
-  `billing_amount` double NOT NULL DEFAULT '0',
+  `billing_quantity` int(11) NOT NULL DEFAULT 0,
+  `billing_rate` double NOT NULL DEFAULT 0,
+  `billing_per` int(11) NOT NULL DEFAULT 0,
+  `billing_amount` double NOT NULL DEFAULT 0,
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1167,19 +1167,19 @@ CREATE TABLE `leave_details` (
   `employee_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `leave_subject` varchar(200) DEFAULT NULL,
-  `leave_matter` longtext,
+  `leave_matter` longtext DEFAULT NULL,
   `leave_dates` varchar(50) DEFAULT NULL,
-  `leave_month` int(11) NOT NULL DEFAULT '0',
-  `leave_year` int(11) NOT NULL DEFAULT '0',
-  `leave_apply_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `leave_month` int(11) NOT NULL DEFAULT 0,
+  `leave_year` int(11) NOT NULL DEFAULT 0,
+  `leave_apply_date` datetime DEFAULT current_timestamp(),
   `response` varchar(250) DEFAULT NULL,
   `response_by_user_id` int(11) NOT NULL,
-  `response_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `action_taken_status` int(11) NOT NULL DEFAULT '1' COMMENT '1 = APPLIED\r\n2 = PROCESSING\r\n3 = ON-HOLD\r\n4 = ACCEPTED\r\n5 = REJECTED',
+  `response_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `action_taken_status` int(11) NOT NULL DEFAULT 1 COMMENT '1 = APPLIED\r\n2 = PROCESSING\r\n3 = ON-HOLD\r\n4 = ACCEPTED\r\n5 = REJECTED',
   `admin_response` varchar(300) DEFAULT NULL,
-  `admin_user_id` int(11) NOT NULL DEFAULT '0',
+  `admin_user_id` int(11) NOT NULL DEFAULT 0,
   `admin_response_date` date DEFAULT NULL,
-  `admin_action_taken_status` int(11) NOT NULL DEFAULT '0' COMMENT '0 = NOTHING, 1 = APPLIED 2 = PROCESSING 3 = ON-HOLD 4 = ACCEPTED 5 = REJECTED',
+  `admin_action_taken_status` int(11) NOT NULL DEFAULT 0 COMMENT '0 = NOTHING, 1 = APPLIED 2 = PROCESSING 3 = ON-HOLD 4 = ACCEPTED 5 = REJECTED',
   `reference_doc` varchar(100) DEFAULT NULL,
   `status` varchar(1) NOT NULL DEFAULT 'A',
   `creation_date` int(11) NOT NULL,
@@ -1214,11 +1214,11 @@ INSERT INTO `leave_details` (`id`, `client_id`, `employee_id`, `user_id`, `leave
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL DEFAULT '1001',
+  `client_id` int(11) NOT NULL DEFAULT 1001,
   `sender_user_id` int(11) NOT NULL,
   `receiver_user_id` int(11) NOT NULL,
   `status` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A = Active, D = Deactive/Deleted',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1252,7 +1252,7 @@ CREATE TABLE `message_details` (
   `message_txt` varchar(400) DEFAULT NULL,
   `attachment_name` varchar(200) DEFAULT NULL,
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1316,7 +1316,8 @@ INSERT INTO `message_details` (`id`, `client_id`, `message_id`, `user_id`, `mess
 (56, 1001, 10, 13, NULL, 'digital_marketing_proposal_20240323_125901.png', 'A', '2024-03-23 12:59:01'),
 (57, 1001, 10, 15, NULL, '3032441_4450_20240323_125905.jpg', 'A', '2024-03-23 12:59:05'),
 (58, 1001, 10, 13, NULL, 'Banana_20240323_130158.zip', 'A', '2024-03-23 13:01:58'),
-(59, 1001, 11, 19, NULL, 'Jai_shree_ram_20240323_132715.jpeg', 'A', '2024-03-23 13:27:15');
+(59, 1001, 11, 19, NULL, 'Jai_shree_ram_20240323_132715.jpeg', 'A', '2024-03-23 13:27:15'),
+(60, 1001, 9, 3, NULL, 'p2_20240328_190054.png', 'A', '2024-03-28 19:00:54');
 
 -- --------------------------------------------------------
 
@@ -1329,9 +1330,9 @@ CREATE TABLE `new_message_log` (
   `client_id` int(11) NOT NULL,
   `msg_receiver_user_id` int(11) NOT NULL,
   `msg_sender_user_id` int(11) NOT NULL,
-  `new_msg` int(11) NOT NULL DEFAULT '1' COMMENT '0 = read, 1 = unread',
+  `new_msg` int(11) NOT NULL DEFAULT 1 COMMENT '0 = read, 1 = unread',
   `status` varchar(1) NOT NULL DEFAULT 'A' COMMENT '0 = Active, 1 = Deactive',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1383,7 +1384,7 @@ INSERT INTO `new_message_log` (`id`, `client_id`, `msg_receiver_user_id`, `msg_s
 (44, 1001, 15, 3, 0, 'D', '2024-02-23 17:56:25'),
 (45, 1001, 15, 3, 0, 'D', '2024-02-23 17:56:31'),
 (46, 1001, 15, 3, 0, 'D', '2024-02-23 17:56:38'),
-(47, 1001, 3, 15, 1, 'A', '2024-02-23 20:19:03'),
+(47, 1001, 3, 15, 0, 'D', '2024-02-23 20:19:03'),
 (48, 1001, 6, 15, 0, 'D', '2024-02-27 14:56:41'),
 (49, 1001, 6, 15, 0, 'D', '2024-02-27 14:56:50'),
 (50, 1001, 6, 15, 0, 'D', '2024-02-27 14:57:18'),
@@ -1395,7 +1396,8 @@ INSERT INTO `new_message_log` (`id`, `client_id`, `msg_receiver_user_id`, `msg_s
 (56, 1001, 15, 13, 0, 'D', '2024-03-23 12:59:01'),
 (57, 1001, 13, 15, 0, 'D', '2024-03-23 12:59:05'),
 (58, 1001, 15, 13, 0, 'D', '2024-03-23 13:01:58'),
-(59, 1001, 21, 19, 1, 'A', '2024-03-23 13:27:15');
+(59, 1001, 21, 19, 1, 'A', '2024-03-23 13:27:15'),
+(60, 1001, 15, 3, 0, 'D', '2024-03-28 19:00:54');
 
 -- --------------------------------------------------------
 
@@ -1408,10 +1410,10 @@ CREATE TABLE `notices` (
   `client_id` int(11) NOT NULL,
   `notice_subject` varchar(200) DEFAULT NULL,
   `notice_file` varchar(100) DEFAULT NULL,
-  `notice_added_by` int(11) NOT NULL DEFAULT '0' COMMENT 'Current User ID',
-  `active` int(11) NOT NULL DEFAULT '1' COMMENT '0 = Draft\r\n1 = Published',
+  `notice_added_by` int(11) NOT NULL DEFAULT 0 COMMENT 'Current User ID',
+  `active` int(11) NOT NULL DEFAULT 1 COMMENT '0 = Draft\r\n1 = Published',
   `status` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A = Active, D = Deactive / Deleted',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
   `last_active_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1423,15 +1425,15 @@ CREATE TABLE `notices` (
 
 CREATE TABLE `pay_slip` (
   `id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL DEFAULT '1001',
+  `client_id` int(11) NOT NULL DEFAULT 1001,
   `employee_id` int(11) NOT NULL,
   `payslip_month` int(11) NOT NULL COMMENT 'Month Index Number',
   `payslip_file` varchar(100) DEFAULT NULL,
   `uploaded_by` int(11) NOT NULL COMMENT 'Current User ID',
-  `active` int(11) NOT NULL DEFAULT '1' COMMENT '0 = Inactive, 1 = Active',
+  `active` int(11) NOT NULL DEFAULT 1 COMMENT '0 = Inactive, 1 = Active',
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `accept_status` int(11) NOT NULL DEFAULT '2' COMMENT '1 = Accepted\r\n2 = Pending\r\n3 = Dispute Raised',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `accept_status` int(11) NOT NULL DEFAULT 2 COMMENT '1 = Accepted\r\n2 = Pending\r\n3 = Dispute Raised',
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
   `last_active_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1482,17 +1484,17 @@ INSERT INTO `pay_slip` (`id`, `client_id`, `employee_id`, `payslip_month`, `pays
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
-  `employee_id` int(11) NOT NULL DEFAULT '0',
+  `employee_id` int(11) NOT NULL DEFAULT 0,
   `user_type` int(11) NOT NULL COMMENT '(SADMIN, 7)\r\n(ADMIN, 6)\r\n(MANAGER, 5)\r\n(EMPLOYEE, 4)',
   `name` varchar(100) NOT NULL,
   `email` varchar(70) DEFAULT NULL,
   `mobile` varchar(15) DEFAULT NULL,
   `password` varchar(20) NOT NULL,
   `pass_hash` varchar(100) NOT NULL,
-  `ref_id` int(11) NOT NULL DEFAULT '0' COMMENT 'Reference Table Id',
-  `active` int(11) NOT NULL DEFAULT '1' COMMENT '1 = Active, 0 = Deactive',
+  `ref_id` int(11) NOT NULL DEFAULT 0 COMMENT 'Reference Table Id',
+  `active` int(11) NOT NULL DEFAULT 1 COMMENT '1 = Active, 0 = Deactive',
   `status` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A = Active, D = Deleted / Removed',
-  `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
   `infotext` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1736,13 +1738,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `message_details`
 --
 ALTER TABLE `message_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `new_message_log`
 --
 ALTER TABLE `new_message_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `notices`

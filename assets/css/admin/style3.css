@@ -78,7 +78,8 @@ a:focus {
     line-height: 35px;
     text-align: center;
     /* background: #232af1; */
-    background: #FF5637;
+    /* background: #FF5637; */
+    background: #ff00e1;
     /* background: linear-gradient(to right, #FF4B2B, #FF416C); */
     /* background: linear-gradient(to left, #B279FF, #7198FD); */
     position: absolute;
@@ -92,7 +93,8 @@ a:focus {
 
 #dismiss:hover {
     background: #fff;
-    color: #FF5637;
+    /* color: #FF5637; */
+    color: #ff00e1;
 }
 
 .overlay {
@@ -134,13 +136,16 @@ a:focus {
     display: block;
     border-radius: 6px;
 }
+
 #sidebar ul li {
     padding-right: 12px;
     padding-left: 12px;
 }
+
 #sidebar ul li a:hover {
     /* color: #17a2b8; */
-    color: #FF5637;
+    /* color: #FF5637; */
+    color: #ff00e1;
     background: #fff;
 }
 
@@ -148,8 +153,8 @@ a:focus {
 a[aria-expanded="true"] {
     color: #fff;
     /* background: #17a2b8; */
-    background: #FF5637;
-    
+    /* background: #FF5637; */
+    background: #ff00e1;
 }
 
 a[data-toggle="collapse"] {

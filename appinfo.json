@@ -2,14 +2,15 @@
     "engine": "pdo",
     "db_config": {
         "host": "localhost",
-        "username": "papercup_crm",
-        "password": "Plks@2023",
-        "database": "papercup_crm"
+        "username": "jsaha",
+        "password": "#Jsaha@3082001",
+        "database": "crm"
     },
-    "default_email": "jsaha.pl@gmail.com",
+    "default_email": "30jsaha@gmail.com",
     "default_email_pwd": "xxxxxxxxxxx",
-    "company_name": "Paperlink Softwares",
-    "company_default_logo": "pl_gold.png",
+    "company_name": "Saha CyberTech",
+    "company_default_logo": "logo.png",
+    "company_title_logo": "p2.png",
     "api": false,
     "api_url": "",
     "app_name": "",

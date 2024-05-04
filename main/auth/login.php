@@ -18,7 +18,7 @@ function printContent()
 	<!-- toastr css -->
 	<link href="<?php echo CDN_URL; ?>css/admin/toastr.min.css?v=<?php echo ASSETS_VERSION; ?>" rel="stylesheet">
     <!-- title x-iccon -->
-    <link rel="shortcut icon" href="<?php echo COMPANY_LOGO_PATH; ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo COMPANY_TITLE_LOGO_PATH; ?>" type="image/x-icon">
 	<style type="text/css" rel="stylesheet">
 			html, body {
 				max-width: 100% !important;

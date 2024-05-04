@@ -75,7 +75,7 @@ $sadmin_sidebar_menus = array_merge($sadmin_dashboard,$sadmin_account,$sadmin_em
                 </div>
             <?php endif; ?>
                 <div class="sidebar-header text-center">
-                    <img src="<?=COMPANY_LOGO_PATH;?>" class="img-fluid" style="width: 50%;"/>
+                    <img src="<?=COMPANY_LOGO_PATH;?>" class="img-fluid" style="width: 90%;"/>
                     <h3 style="font-size: 1.3rem !important; font-weight: 600  !important; margin-top: 10px;"><?=COMPANY_NAME?> CRM</h3>
                 </div>
 

@@ -109,7 +109,7 @@ function printContent()
 			</div>
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Team !</h1>
-				<p>Sign In To Explore Paperlinkers' Zone</p>
+				<p>Sign In To Explore Things</p>
 				<!-- <button class="ghost" id="signUp" <?php if(is_mobile()): ?> style="padding: 12px 19px; !important;" <?php endif;?>>Sign Up</button> -->
 			</div>
 		</div>
